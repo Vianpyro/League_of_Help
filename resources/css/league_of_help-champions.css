@@ -1,0 +1,68 @@
+#toptext {
+    color: #ddd;
+    font-size: 24px;
+    margin: 2em auto 1em;
+    text-align: center;
+    width: 75%;
+}
+#wrap {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3em auto;
+    width: 80%;
+}
+#wrap figure {
+    border-radius: 20px;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    transition-delay: 50ms;
+    transition-duration: 250ms;
+}
+#wrap figure:hover {
+    cursor: pointer;
+}
+#wrap figure a {
+    color: #000;
+    text-decoration: none;
+}
+#wrap figure a:hover {
+    color: #aaa;
+}
+#wrap figure figcaption {
+    transition-duration: 250ms;
+    margin-top: .9pc;
+}
+.champion_icon {
+    border-radius: 20px;
+    -webkit-box-shadow: var(--box-shadows);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: var(--box-shadows);  /* Firefox 3.5 - 3.6 */
+    box-shadow: var(--box-shadows);
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    transition-duration: 250ms;
+}
+.champion_icon:hover {
+    transform: scale(1.125);
+    border-radius: 10px;
+}
+@media screen and (max-width: 800px) {
+    #toptext {
+        font-size: 32px;
+    }
+    #wrap {
+        width: 90%;
+    }
+    #wrap figure {
+        padding: .5em;
+    }
+    .champion_icon {
+        height: 100px;
+        width: 100px;
+    }
+}

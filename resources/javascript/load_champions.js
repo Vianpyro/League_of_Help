@@ -21,6 +21,10 @@ async function get_json_from_api(source_url) {
     const champions_list = Object.keys(champions_data['data'])
     console.log(champions_data['data']);
 
+    // Write the "top text"
+    document.getElementById('toptext_champions').innerHTML = champions_list.length
+    document.getElementById('toptext_champions').title = `patch ${versions[0]}`
+
     for (champion of champions_list) {
         document.getElementById('wrap').innerHTML += `
         <figure><a>

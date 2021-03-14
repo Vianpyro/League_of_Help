@@ -5,7 +5,7 @@
     text-align: center;
     width: 75%;
 }
-#wrap {
+#wrapper {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -14,7 +14,7 @@
     margin: 3em auto;
     width: 80%;
 }
-#wrap figure {
+#wrapper figure {
     border-radius: 20px;
     margin: 1em;
     padding: 1em;
@@ -23,17 +23,17 @@
     transition-delay: 50ms;
     transition-duration: 250ms;
 }
-#wrap figure:hover {
+#wrapper figure:hover {
     cursor: pointer;
 }
-#wrap figure a {
+#wrapper figure a {
     color: #000;
     text-decoration: none;
 }
-#wrap figure a:hover {
+#wrapper figure a:hover {
     color: #aaa;
 }
-#wrap figure figcaption {
+#wrapper figure figcaption {
     transition-duration: 250ms;
     margin-top: .9pc;
 }
@@ -55,10 +55,10 @@
     #toptext {
         font-size: 32px;
     }
-    #wrap {
+    #wrapper {
         width: 90%;
     }
-    #wrap figure {
+    #wrapper figure {
         padding: .5em;
     }
     .champion_icon {

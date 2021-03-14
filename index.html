@@ -3,19 +3,30 @@
 <head>
     <link rel="stylesheet" href="resources/css/league_of_help-champions.css">
     <link rel="stylesheet" href="resources/css/styles.css">
+    <script src="resources/javascript/main.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League of Help</title>
 </head>
 <body>
+    <aside id="scripts">
+        <script src="resources/javascript/champions_load.js"></script>
+        <script src="resources/javascript/champions_modal.js"></script>
+    </aside>
+    <div id="modal_champion">
+        <div id="champion_loading_screen">
+            <img id="champion_loading_screen_image" src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/AurelionSol_0.jpg" alt="Aurelion Sol">
+            <figcaption id="champion_loading_screen_name">Aurelion Sol</figcaption>
+        </div>
+    </div>
     <header></header>
     <div id="toptext">
+        <noscript>You need to enable JavaScript to run this app.</noscript>
         With <span id="toptext_champions">more than 150</span> champions,
         you’ll find the perfect match for your playstyle. Master one, or master them all.
     </div>
-    <div id="wrap"></div>
+    <div id="wrapper"></div>
     <footer></footer>
-    <script src="resources/javascript/load_champions.js"></script>
 </body>
 </html>

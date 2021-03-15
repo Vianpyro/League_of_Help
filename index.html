@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="resources/css/league_of_help-champions.css">
+    <link rel="stylesheet" href="resources/css/league_of_help/champions.css">
+    <link rel="stylesheet" href="resources/css/league_of_help/modal.css">
     <link rel="stylesheet" href="resources/css/styles.css">
     <script src="resources/javascript/main.js"></script>
     <meta charset="UTF-8">
@@ -14,12 +15,16 @@
         <script src="resources/javascript/champions_load.js"></script>
         <script src="resources/javascript/champions_modal.js"></script>
     </aside>
-    <div id="modal_champion">
+    <aside id="modal_champion" style="display: none; position: absolute;">
         <div id="champion_loading_screen">
-            <img id="champion_loading_screen_image" src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/AurelionSol_0.jpg" alt="Aurelion Sol">
-            <figcaption id="champion_loading_screen_name">Aurelion Sol</figcaption>
+            <button id="modal_close">×</button>
+            <img loading="lazy" id="champion_loading_screen_image">
+            <figcaption id="champion_loading_screen_infos">
+                <span id="champion_loading_screen_name"></span>
+                <span id="champion_loading_screen_title"></span>
+            </figcaption>
         </div>
-    </div>
+    </aside>
     <header></header>
     <div id="toptext">
         <noscript>You need to enable JavaScript to run this app.</noscript>

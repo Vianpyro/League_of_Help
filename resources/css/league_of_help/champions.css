@@ -1,0 +1,68 @@
+#toptext {
+    color: var(--default_light_text_color);
+    font-size: 24px;
+    margin: 2em auto 1em;
+    text-align: center;
+    width: 75%;
+}
+#wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3em auto;
+    width: 80%;
+}
+#wrapper figure {
+    border-radius: var(--default_border_radius);
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    transition-delay: 50ms;
+    transition-duration: 250ms;
+}
+#wrapper figure:hover {
+    cursor: pointer;
+}
+#wrapper figure a {
+    color: var(--default_light_text_color);
+    text-decoration: none;
+}
+#wrapper figure a:hover {
+    color: var(--default_hypertext_hover_color);
+}
+#wrapper figure figcaption {
+    transition-duration: 250ms;
+    margin-top: .9pc;
+}
+.champion_icon {
+    border-radius: var(--default_border_radius);
+    -webkit-box-shadow: var(--box-shadows);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: var(--box-shadows);  /* Firefox 3.5 - 3.6 */
+    box-shadow: var(--box-shadows);
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    transition-duration: 250ms;
+}
+.champion_icon:hover {
+    transform: scale(1.125);
+    border-radius: 10px;
+}
+@media screen and (max-width: 800px) {
+    #toptext {
+        font-size: 32px;
+    }
+    #wrapper {
+        width: 90%;
+    }
+    #wrapper figure {
+        padding: .5em;
+    }
+    .champion_icon {
+        height: 100px;
+        width: 100px;
+    }
+}

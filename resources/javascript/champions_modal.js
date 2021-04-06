@@ -16,11 +16,7 @@ async function open_modal(champion_data) {
 
     // Close modal by clicking out of it
     window.addEventListener('click', function (e) {
-        if (document.getElementById('modal_champion_wrapper').contains(e.target)) {
-            return;
-        }
         if (document.getElementById('modal_champion').contains(e.target)) {
-            console.log('HIDE!')
             return document.getElementById('modal_champion').style.display = 'none';
         }
     });

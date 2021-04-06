@@ -1,0 +1,13 @@
+#search_champion {
+    background-color: var(--default_light_background_color);
+    background-image: url(../../images/search_icon.png);
+    background-position: 5px;
+    background-repeat: no-repeat;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin: 1em;
+    max-width: 200px;
+    min-width: 10%;
+    padding: 12px 20px 12px 50px;
+    border-radius: var(--default_border_radius);
+}

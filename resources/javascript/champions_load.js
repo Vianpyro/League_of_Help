@@ -5,10 +5,6 @@ async function get_json_from_api(source_url) {
 }
 
 (async () => {
-    /*
-    CHAMPION ICONS
-    */
-
     // Get the language
     const languages = await get_json_from_api(`${base_url}/cdn/languages.json`);
     const language = languages.includes(user_lang) ? user_lang: "en_US";
@@ -32,7 +28,7 @@ async function get_json_from_api(source_url) {
         const champ = champion
         const aToOpenModal = document.createElement("a");
         aToOpenModal.addEventListener("click", () => { open_modal(champions_data['data'][champ]) });
-        aToOpenModal.classList.add(`click_to_${champion}_open_modal`);
+        aToOpenModal.classList.add(`click_to_open_${champion}_modal`);
 
         aToOpenModal.innerHTML += `
         <img loading="lazy" class="champion_icon" id="${champion}_icon" src="${base_url}/cdn/${versions[0]}/img/champion/${champion}.png" />

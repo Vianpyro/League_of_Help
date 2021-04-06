@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="resources/css/league_of_help/champions.css">
     <link rel="stylesheet" href="resources/css/league_of_help/modal.css">
+    <link rel="stylesheet" href="resources/css/league_of_help/search_bar.css">
     <link rel="stylesheet" href="resources/css/styles.css">
     <script src="resources/javascript/main.js"></script>
     <meta charset="UTF-8">
@@ -14,12 +15,17 @@
     <aside id="scripts">
         <script src="resources/javascript/champions_load.js"></script>
         <script src="resources/javascript/champions_modal.js"></script>
+        <script src="resources/javascript/champions_search_bar.js"></script>
     </aside>
     <header></header>
     <div id="toptext">
-        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <noscript class="error">You need to enable JavaScript to run this app.</noscript>
         With <span id="toptext_champions">more than 150</span> champions,
         you’ll find the perfect match for your playstyle. Master one, or master them all.
+        <div>
+            <input type="text" id="search_champion" onkeyup="search_champion()"
+                placeholder="Search for champion..." autocomplete="off" autofocus>
+        </div>
     </div>
     <div id="wrapper"></div>
     <aside id="modal_champion" style="display: none;">
@@ -30,6 +36,9 @@
                     <span id="champion_loading_screen_name"></span>
                     <span id="champion_loading_screen_title"></span>
                 </figcaption>
+            </div>
+            <div id="champion_spells">
+
             </div>
             <button id="modal_close">×</button>
         </div>

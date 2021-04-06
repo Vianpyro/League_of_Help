@@ -13,4 +13,14 @@ async function open_modal(champion_data) {
 
     // Close modal by clicking on modal-close
     document.getElementById('modal_close').addEventListener('click', () => document.getElementById('modal_champion').style.display = 'none');
+
+    // Close modal by clicking out of it
+    /*  This does not work: the modal hides instantly...
+    window.addEventListener('click', function (e) {
+        if (!document.getElementById('modal_champion_wrapper').contains(e.target)) {
+            console.log('HIDE!')
+            return document.getElementById('modal_champion').style.display = 'none';
+        }
+    });
+    */
 }

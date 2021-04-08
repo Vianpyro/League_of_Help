@@ -2,7 +2,6 @@ async function open_modal(champion, patch, language) {
     const champion_data = await get_json_from_api(`${base_url}/cdn/${patch}/data/${language}/champion/${champion['id']}.json`)
 
     // Splash art
-    console.log(champion_data['data'][champion['id']]['image']['full'])
     document.getElementById('champion_loading_screen_image').src = `${base_url}/cdn/img/champion/loading/${champion['id']}_0.jpg`
 
     // Name and title
@@ -15,22 +14,19 @@ async function open_modal(champion, patch, language) {
     
     // Spells images
     document.getElementById('champion_passive_image').src = `${base_url}/cdn/${patch}/img/passive/${champion_data['data'][champion['id']]['passive']['image']['full']}`
-    document.getElementById('champion_q_spell_image').src = `${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][0]['image']['full']}`
-    document.getElementById('champion_w_spell_image').src = `${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][1]['image']['full']}`
-    document.getElementById('champion_e_spell_image').src = `${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][2]['image']['full']}`
-    document.getElementById('champion_r_spell_image').src = `${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][3]['image']['full']}`
-
+    for (i = 0; i < 4; i++) {
+        document.getElementById(`champion_${['q', 'w', 'e', 'r'][i]}_spell_image`).src = `
+        ${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][i]['image']['full']}`
+    }
+        
     // Spells description (TODO: Replace "description" with "tooltip" [from the API])
     document.getElementById('passive_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['passive']['name']}</p>
-        <p>${champion_data['data'][champion['id']]['passive']['description']}</p>`
-    document.getElementById('q_spell_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['spells'][0]['name']}</p>
-        <p>${champion_data['data'][champion['id']]['spells'][0]['description']}</p>`
-    document.getElementById('w_spell_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['spells'][1]['name']}</p>
-        <p>${champion_data['data'][champion['id']]['spells'][1]['description']}</p>`
-    document.getElementById('e_spell_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['spells'][2]['name']}</p>
-        <p>${champion_data['data'][champion['id']]['spells'][2]['description']}</p>`
-    document.getElementById('r_spell_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['spells'][3]['name']}</p>
-        <p>${champion_data['data'][champion['id']]['spells'][3]['description']}</p>`
+    <p>${champion_data['data'][champion['id']]['passive']['description']}</p>`
+    for (i = 0; i < 4; i++) {
+        let k = ['q', 'w', 'e', 'r'][i];
+        document.getElementById(`${k}_spell_description`).innerHTML = `<p id="champion_${k}_spell_title" class="champion_spell_title">${champion_data['data'][champion['id']]['spells'][i]['name']}</p>
+        <p>${champion_data['data'][champion['id']]['spells'][i]['description']}</p>`;
+    };
     
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';

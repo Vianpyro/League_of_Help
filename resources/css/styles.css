@@ -22,3 +22,6 @@ body {
 input:focus, textarea:focus, select:focus {
     outline: none;
 }
+img, input {
+    user-select: none;
+}

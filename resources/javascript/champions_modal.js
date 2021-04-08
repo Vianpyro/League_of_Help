@@ -8,6 +8,21 @@ async function open_modal(champion, patch, language) {
     document.getElementById('champion_loading_screen_name').innerHTML = champion['name']
     document.getElementById('champion_loading_screen_title').innerHTML = champion['title']
 
+    // Tag(s)
+    const tags = champion_data['data'][champion['id']]['tags']
+    if (tags.length > 1) {
+        document.getElementById('champion_tags').innerHTML = `<b>Roles:</b> <span id="champion_tags_list"></span>`
+        for (i = 0; i < tags.length; i++) {
+            if (i == tags.length - 1) {
+                document.getElementById('champion_tags_list').innerHTML += `${tags[i]}.`
+            } else {
+                document.getElementById('champion_tags_list').innerHTML += `${tags[i]}, `
+            }
+        }
+    } else {
+        document.getElementById('champion_tags').innerHTML = `<b>Role:</b> ${champion_data['data'][champion['id']]['tags'][0]}.`
+    }
+
     // Riot Difficulty
     document.getElementById('riot_difficulty').title = `Riot Difficulty: ${champion['info']['difficulty']}/10`
     document.getElementById('champion_riot_difficulty').value = champion['info']['difficulty']

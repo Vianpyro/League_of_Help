@@ -73,11 +73,14 @@
 #champion_spells {
     align-items: center;
     display: flex;
-    justify-content: center;
-    margin: auto;
+    justify-content: left;
 }
 .champion_spell {
-    padding: 1em;
+    padding: 1em 2em 0 0;
+}
+.champion_spell img {
+    width: 48px;
+    border-radius: 5px;
 }
 @media screen and (max-width: 800px) {
     #champion_loading_screen_image {

@@ -1,27 +1,27 @@
 * {
-    padding: 0;
-    margin: 0;
-    font-family: sans-serif;
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
 }
 :root {
-    --box_shadows: #666 0 0 3px;
-    --default_light_text_color: #ddd;
-    --default_dark_text_color: #222;
-    --default_hypertext_hover_color: #aaa;
-    --default_dark_background_color: #333;
-    --default_light_background_color: #dfdfdf;
-    --default_border_radius: 20px;
+	--box_shadows: #666 0 0 3px;
+	--default_border_radius: 20px;
+	--default_dark_background_color: #333;
+	--default_dark_text_color: #222;
+	--default_hypertext_hover_color: #aaa;
+	--default_light_background_color: #dfdfdf;
+	--default_light_text_color: #ddd;
 }
 body {
-    background-color: var(--default_dark_background_color);
+	background-color: var(--default_dark_background_color);
 }
 .error {
-    color: #f55;
-    text-decoration: none;
+	color: #f55;
+	text-decoration: none;
 }
 input:focus, textarea:focus, select:focus {
-    outline: none;
+	outline: none;
 }
 img, input {
-    user-select: none;
+	user-select: none;
 }

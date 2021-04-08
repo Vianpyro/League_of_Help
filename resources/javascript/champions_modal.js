@@ -33,16 +33,20 @@ async function open_modal(champion, patch, language) {
         document.getElementById(`champion_${['q', 'w', 'e', 'r'][i]}_spell_image`).src = `
         ${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][i]['image']['full']}`
     }
-        
+
     // Spells description (TODO: Replace "description" with "tooltip" [from the API])
     document.getElementById('passive_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['passive']['name']}</p>
     <p>${champion_data['data'][champion['id']]['passive']['description']}</p>`
     for (i = 0; i < 4; i++) {
-        let k = ['q', 'w', 'e', 'r'][i];
-        document.getElementById(`${k}_spell_description`).innerHTML = `<p id="champion_${k}_spell_title" class="champion_spell_title">${champion_data['data'][champion['id']]['spells'][i]['name']}</p>
+        // Spell title and name
+        document.getElementById(`${spell_keys[i]}_spell_description`).innerHTML = `
+        <p id="champion_${spell_keys[i]}_spell_title" class="champion_spell_title">${champion_data['data'][champion['id']]['spells'][i]['name']}</p>
         <p>${champion_data['data'][champion['id']]['spells'][i]['description']}</p>`;
+
+        // Spell cooldowns
+        document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${champion_data['data'][champion['id']]['spells'][i]['cooldown']}`
     };
-    
+
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';
         

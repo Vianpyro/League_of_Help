@@ -1,4 +1,4 @@
-async function open_modal(champion, patch, language) {
+async function open_modal(champion, patch, language, items) {
     const champion_data = await get_json_from_api(`${base_url}/cdn/${patch}/data/${language}/champion/${champion['id']}.json`)
 
     // Splash art
@@ -45,6 +45,22 @@ async function open_modal(champion, patch, language) {
 
         // Spell cooldowns
         document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${champion_data['data'][champion['id']]['spells'][i]['cooldown']}`
+    };
+
+    // Please me optimize this code ASAP!!!
+    document.getElementById('champion_items').innerHTML = ''
+    for (i = 0; i < champion_data['data'][champion['id']]['recommended'][4]['blocks'].length; i++) {
+        if (champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type'] == 'essential') {
+            document.getElementById('champion_items').innerHTML += `
+                <ul class="champion_items_list" id="${champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type']}"></ul>`;
+
+            for (j = 0; j < champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'].length; j++) {
+                if (champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'][j]['id'] in items['data']) {
+                    document.getElementById(champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type']).innerHTML += `
+                        <li><img src="${base_url}/cdn/${patch}/img/item/${champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'][j]['id']}.png"></li>`
+                };
+            };
+        }
     };
 
     // Display the modal

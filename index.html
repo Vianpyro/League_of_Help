@@ -41,7 +41,7 @@
                     <span id="riot_difficulty"><progress id="champion_riot_difficulty" max="10"></progress></span>
                 </figcaption>
             </div>
-            <div>Abilities:</div>
+            <span>Abilities:</span>
             <div id="champion_spells">
                 <span id="passive" class="champion_spell tooltip">
                     <img id="champion_passive_image">
@@ -52,8 +52,8 @@
                     <figcaption id="q_spell_info">
                         <span class="spell_key">Q</span>
                         <div class="tooltip_text">
-                            <p id="q_spell_description"></p><br>
-                            <p id="q_spell_cooldowns" class="champion_spell_cooldown"></p>
+                            <span id="q_spell_description"></span><br>
+                            <span id="q_spell_cooldowns" class="champion_spell_cooldown"></span>
                         </div>
                     </figcaption>
                 </span>
@@ -88,6 +88,8 @@
                     </figcaption>
                 </span>
             </div>
+            <span>Recommended items:</span>
+            <div><ul id="champion_items"></ul></div>
             <button id="modal_close">×</button>
         </div>
     </aside>

@@ -15,13 +15,16 @@
 body {
 	background-color: var(--default_dark_background_color);
 }
-.error {
-	color: #f55;
-	text-decoration: none;
+img, input {
+	user-select: none;
 }
 input:focus, textarea:focus, select:focus {
 	outline: none;
 }
-img, input {
-	user-select: none;
+li {
+	display: inline-flex;
+}
+.error {
+	color: #f55;
+	text-decoration: none;
 }

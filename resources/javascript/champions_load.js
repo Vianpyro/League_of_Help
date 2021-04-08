@@ -1,9 +1,3 @@
-async function get_json_from_api(source_url) {
-    const request = await fetch(source_url);
-    const response = await request.json();
-    return response;
-}
-
 (async () => {
     try {
         // Get the language
@@ -28,7 +22,7 @@ async function get_json_from_api(source_url) {
         for (champion of champions_list) {
             const champ = champion
             const aToOpenModal = document.createElement("a");
-            aToOpenModal.addEventListener("click", () => { open_modal(champions_data['data'][champ]) });
+            aToOpenModal.addEventListener("click", () => { open_modal(champions_data['data'][champ], versions[0], language) });
             aToOpenModal.classList.add(`click_to_open_${champion}_modal`);
     
             aToOpenModal.innerHTML += `

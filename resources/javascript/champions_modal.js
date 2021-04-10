@@ -1,5 +1,6 @@
 async function open_modal(champion, patch, language, items) {
     const champion_data = await get_json_from_api(`${base_url}/cdn/${patch}/data/${language}/champion/${champion['id']}.json`)
+    const this_champion_data = champion_data['data'][champion['id']]
 
     // Splash art
     document.getElementById('champion_loading_screen_image').src = `${base_url}/cdn/img/champion/loading/${champion['id']}_0.jpg`
@@ -9,18 +10,17 @@ async function open_modal(champion, patch, language, items) {
     document.getElementById('champion_loading_screen_title').innerHTML = champion['title']
 
     // Tag(s)
-    const tags = champion_data['data'][champion['id']]['tags']
-    if (tags.length > 1) {
+    if (this_champion_data['tags'].length > 1) {
         document.getElementById('champion_tags').innerHTML = `<b>Roles:</b> <span id="champion_tags_list"></span>`
-        for (i = 0; i < tags.length; i++) {
-            if (i == tags.length - 1) {
-                document.getElementById('champion_tags_list').innerHTML += `${tags[i]}.`
+        for (i = 0; i < this_champion_data['tags'].length; i++) {
+            if (i == this_champion_data['tags'].length - 1) {
+                document.getElementById('champion_tags_list').innerHTML += `${this_champion_data['tags'][i]}.`
             } else {
-                document.getElementById('champion_tags_list').innerHTML += `${tags[i]}, `
+                document.getElementById('champion_tags_list').innerHTML += `${this_champion_data['tags'][i]}, `
             }
         }
     } else {
-        document.getElementById('champion_tags').innerHTML = `<b>Role:</b> ${champion_data['data'][champion['id']]['tags'][0]}.`
+        document.getElementById('champion_tags').innerHTML = `<b>Role:</b> ${this_champion_data['tags'][0]}.`
     }
 
     // Riot Difficulty
@@ -28,40 +28,45 @@ async function open_modal(champion, patch, language, items) {
     document.getElementById('champion_riot_difficulty').value = champion['info']['difficulty']
     
     // Spells images
-    document.getElementById('champion_passive_image').src = `${base_url}/cdn/${patch}/img/passive/${champion_data['data'][champion['id']]['passive']['image']['full']}`
+    document.getElementById('champion_passive_image').src = `${base_url}/cdn/${patch}/img/passive/${this_champion_data['passive']['image']['full']}`
     for (i = 0; i < 4; i++) {
         document.getElementById(`champion_${['q', 'w', 'e', 'r'][i]}_spell_image`).src = `
-        ${base_url}/cdn/${patch}/img/spell/${champion_data['data'][champion['id']]['spells'][i]['image']['full']}`
+        ${base_url}/cdn/${patch}/img/spell/${this_champion_data['spells'][i]['image']['full']}`
     }
 
     // Spells description (TODO: Replace "description" with "tooltip" [from the API])
-    document.getElementById('passive_description').innerHTML = `<p id="champion_passive_title">${champion_data['data'][champion['id']]['passive']['name']}</p>
-    <p>${champion_data['data'][champion['id']]['passive']['description']}</p>`
+    document.getElementById('passive_description').innerHTML = `<p id="champion_passive_title">${this_champion_data['passive']['name']}</p>
+    <p>${this_champion_data['passive']['description']}</p>`
     for (i = 0; i < 4; i++) {
         // Spell title and name
         document.getElementById(`${spell_keys[i]}_spell_description`).innerHTML = `
-        <p id="champion_${spell_keys[i]}_spell_title" class="champion_spell_title">${champion_data['data'][champion['id']]['spells'][i]['name']}</p>
-        <p>${champion_data['data'][champion['id']]['spells'][i]['description']}</p>`;
+        <p id="champion_${spell_keys[i]}_spell_title" class="champion_spell_title">${this_champion_data['spells'][i]['name']}</p>
+        <p>${this_champion_data['spells'][i]['description']}</p>`;
 
         // Spell cooldowns
-        document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${champion_data['data'][champion['id']]['spells'][i]['cooldown']}`
+        document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data['spells'][i]['cooldown']}`
     };
 
     // Please me optimize this code ASAP!!!
+    // TODO: Create an empty array and implement all the recommended items in it, then remove the starting items (1000-2000?) etc...
     document.getElementById('champion_items').innerHTML = ''
-    for (i = 0; i < champion_data['data'][champion['id']]['recommended'][4]['blocks'].length; i++) {
-        if (champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type'] == 'essential') {
-            document.getElementById('champion_items').innerHTML += `
-                <ul class="champion_items_list" id="${champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type']}"></ul>`;
-
-            for (j = 0; j < champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'].length; j++) {
-                if (champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'][j]['id'] in items['data']) {
-                    document.getElementById(champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['type']).innerHTML += `
-                        <li><img src="${base_url}/cdn/${patch}/img/item/${champion_data['data'][champion['id']]['recommended'][4]['blocks'][i]['items'][j]['id']}.png"></li>`
+    document.getElementById('recommended_items_text').innerHTML = ''
+    try {
+        for (i = 0; i < this_champion_data['recommended'][4]['blocks'].length; i++) {
+            if (['essential', 'npe4', 'standard', 'offensive', 'odyyasuo1', 'recommended'].includes(this_champion_data['recommended'][4]['blocks'][i]['type'])) {
+                document.getElementById('champion_items').innerHTML += `
+                    <ul class="champion_items_list" id="${this_champion_data['recommended'][4]['blocks'][i]['type']}"></ul>`;
+    
+                for (j = 0; j < this_champion_data['recommended'][4]['blocks'][i]['items'].length; j++) {
+                    if (this_champion_data['recommended'][4]['blocks'][i]['items'][j]['id'] in items['data']) {
+                        document.getElementById(this_champion_data['recommended'][4]['blocks'][i]['type']).innerHTML += `
+                            <li><img src="${base_url}/cdn/${patch}/img/item/${this_champion_data['recommended'][4]['blocks'][i]['items'][j]['id']}.png"></li>`
+                    };
                 };
-            };
-        }
-    };
+            }
+        };
+        document.getElementById('recommended_items_text').innerHTML = 'Recommended items:'
+    } catch {};
 
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';

@@ -71,7 +71,7 @@ async function open_modal(champion, patch, language, items) {
     // Display the items.
     for (item of unique_items) {
         if (item in items['data'] && !("into" in items['data'][item]) && items['data'][item]['gold']['base'] != 0) {
-            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${patch}/img/item/${item}.png"></li>`;
+            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${patch}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
         };
     };
 

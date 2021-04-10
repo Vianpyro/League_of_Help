@@ -47,26 +47,33 @@ async function open_modal(champion, patch, language, items) {
         document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data['spells'][i]['cooldown']}`
     };
 
-    // Please me optimize this code ASAP!!!
-    // TODO: Create an empty array and implement all the recommended items in it, then remove the starting items (1000-2000?) etc...
-    document.getElementById('champion_items').innerHTML = ''
-    document.getElementById('recommended_items_text').innerHTML = ''
-    try {
-        for (i = 0; i < this_champion_data['recommended'][4]['blocks'].length; i++) {
-            if (['essential', 'npe4', 'standard', 'offensive', 'odyyasuo1', 'recommended'].includes(this_champion_data['recommended'][4]['blocks'][i]['type'])) {
-                document.getElementById('champion_items').innerHTML += `
-                    <ul class="champion_items_list" id="${this_champion_data['recommended'][4]['blocks'][i]['type']}"></ul>`;
     
-                for (j = 0; j < this_champion_data['recommended'][4]['blocks'][i]['items'].length; j++) {
-                    if (this_champion_data['recommended'][4]['blocks'][i]['items'][j]['id'] in items['data']) {
-                        document.getElementById(this_champion_data['recommended'][4]['blocks'][i]['type']).innerHTML += `
-                            <li><img src="${base_url}/cdn/${patch}/img/item/${this_champion_data['recommended'][4]['blocks'][i]['items'][j]['id']}.png"></li>`
+    // Implement an array with all the items recommended for the champion.
+    document.getElementById('champion_items').innerHTML = ''
+    let recommended_items = []
+    for (i = 0; i < this_champion_data['recommended'].length; i++) {
+        if (this_champion_data['recommended'][i]['mode'] == 'CLASSIC') {
+            for (j = 0; j < this_champion_data['recommended'][i]['blocks'].length; j++) {
+                if (!['starting', 'early'].includes(this_champion_data['recommended'][i]['blocks'][j]['type'])) {
+                    for (k = 0; k < this_champion_data['recommended'][i]['blocks'][j]['items'].length; k++) {
+                        if (!this_champion_data['recommended'][i]['blocks'][j]['items'][k]['hideCount']) {
+                            recommended_items.push(this_champion_data['recommended'][i]['blocks'][j]['items'][k]['id']);
+                        };
                     };
                 };
-            }
+            };
         };
-        document.getElementById('recommended_items_text').innerHTML = 'Recommended items:'
-    } catch {};
+    };
+    // Remove the duplicates.
+    const unique_items_set = new Set(recommended_items);
+    const unique_items = [...unique_items_set];
+    
+    // Display the items.
+    for (item of unique_items) {
+        if (item in items['data'] && !("into" in items['data'][item]) && items['data'][item]['gold']['base'] != 0) {
+            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${patch}/img/item/${item}.png"></li>`;
+        };
+    };
 
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';

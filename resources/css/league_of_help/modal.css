@@ -4,13 +4,13 @@ magicDamage {
 physicalDamage {
 	color: #cd7f32;
 }
-.champion_spell {
+.champion_spell, .recommended_item {
 	margin: 1em;
 }
 .champion_spell_cooldown {
 	color: #bbb;
 }
-.champion_spell img {
+.champion_spell img, .recommended_item img {
 	border-radius: 5px;
 	width: 48px;
 }

@@ -35,7 +35,6 @@ async function open_modal(champion, patch, language, items) {
         document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data['spells'][i]['cooldown']}`;
     };
 
-    
     // Implement an array with all the items recommended for the champion.
     document.getElementById('champion_items').innerHTML = ''
     let recommended_items = []
@@ -52,6 +51,7 @@ async function open_modal(champion, patch, language, items) {
             };
         };
     };
+
     // Remove the duplicates.
     const unique_items_set = new Set(recommended_items);
     const unique_items = [...unique_items_set];
@@ -63,10 +63,28 @@ async function open_modal(champion, patch, language, items) {
         };
     };
 
+    // Log the tips (this code must be optimized: the issues should be loaded only once)
+    const issues = await get_json_from_api('https://api.github.com/repos/Vianpyro/league_of_help/issues');
+    const tips = {}
+
+    for (element of issues) {
+        for (label of element.labels) {
+            if (label.name == 'tip') {
+                tips[element.title.substr(5)] = element.body;
+            }
+        }
+    }
+
+    if (this_champion_data['name'] in tips) {
+        document.getElementById('champion_tips').innerHTML = tips[this_champion_data['name']]
+    } else {
+        document.getElementById('champion_tips').innerHTML = ''
+    }
+
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';
         
-    // Close modal by pressing esc key
+    // Close modal by pessing esc key
     document.body.onkeyup = e => {
         if (e.key === 'Escape' || e.key === 'Esc') return document.getElementById('modal_champion').style.display = 'none';
     };

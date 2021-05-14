@@ -41,7 +41,7 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 3em auto;
-	width: 80%;
+	width: clamp(350px, 80%, 2000px);
 }
 #wrapper figure {
 	border-radius: var(--default_border_radius);
@@ -69,9 +69,6 @@
 @media screen and (max-width: 800px) {
 	#toptext {
 		font-size: 32px;
-	}
-	#wrapper {
-		width: 90%;
 	}
 	#wrapper figure {
 		padding: .5em;

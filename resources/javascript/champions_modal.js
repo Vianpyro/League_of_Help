@@ -91,6 +91,9 @@ async function open_modal(champion, versions, language, items) {
         document.getElementById('champion_tips').innerHTML = ''
     }
 
+    // Change the tips link
+    document.getElementById('submit_tips').href = `https://github.com/Vianpyro/league_of_help/issues/new?assignees=Vianpyro&labels=tip&template=tip_submission.md&title=Tip%3A+${this_champion_data['name']}`
+
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';
         

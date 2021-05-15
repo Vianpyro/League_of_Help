@@ -1,5 +1,5 @@
-async function open_modal(champion, patch, language, items) {
-    const champion_data = await get_json_from_api(`${base_url}/cdn/${patch}/data/${language}/champion/${champion['id']}.json`);
+async function open_modal(champion, versions, language, items) {
+    const champion_data = await get_json_from_api(`${base_url}/cdn/${versions[0]}/data/${language}/champion/${champion['id']}.json`);
     const this_champion_data = champion_data['data'][champion['id']];
 
     // Splash art
@@ -17,9 +17,9 @@ async function open_modal(champion, patch, language, items) {
     document.getElementById('champion_riot_difficulty').value = champion['info']['difficulty'];
     
     // Spells images
-    document.getElementById('champion_passive_image').src = `${base_url}/cdn/${patch}/img/passive/${this_champion_data['passive']['image']['full']}`;
+    document.getElementById('champion_passive_image').src = `${base_url}/cdn/${versions[0]}/img/passive/${this_champion_data['passive']['image']['full']}`;
     for (i = 0; i < 4; i++) {
-        document.getElementById(`champion_${spell_keys[i]}_spell_image`).src = `${base_url}/cdn/${patch}/img/spell/${this_champion_data['spells'][i]['image']['full']}`;
+        document.getElementById(`champion_${spell_keys[i]}_spell_image`).src = `${base_url}/cdn/${versions[0]}/img/spell/${this_champion_data['spells'][i]['image']['full']}`;
     }
 
     // Spells description (TODO: Replace "description" with "tooltip" [from the API])
@@ -38,6 +38,16 @@ async function open_modal(champion, patch, language, items) {
     // Implement an array with all the items recommended for the champion.
     document.getElementById('champion_items').innerHTML = ''
     let recommended_items = []
+    if (this_champion_data['recommended'].length == 0) {
+        let patch_index = 1
+        while (this_champion_data['recommended'].length == 0 && patch_index < versions.length) {
+            new_data = await get_json_from_api(`${base_url}/cdn/${versions[patch_index]}/data/${language}/champion/${champion['id']}.json`);
+            this_champion_data['recommended'] = new_data['data'][champion['id']]['recommended']
+            patch_index++;
+        }
+        document.getElementById('recommended_items').innerHTML = `Recommended items (patch ${versions[patch_index - 1]}):`
+        console.log(`Loading patch ${versions[patch_index - 1]} items for ${this_champion_data['name']}`);
+    }
     for (i = 0; i < this_champion_data['recommended'].length; i++) {
         if (this_champion_data['recommended'][i]['mode'] == 'CLASSIC') {
             for (j = 0; j < this_champion_data['recommended'][i]['blocks'].length; j++) {
@@ -59,7 +69,7 @@ async function open_modal(champion, patch, language, items) {
     // Display the items.
     for (item of unique_items) {
         if (item in items['data'] && !("into" in items['data'][item]) && items['data'][item]['gold']['base'] > 50) {
-            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${patch}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
         };
     };
 

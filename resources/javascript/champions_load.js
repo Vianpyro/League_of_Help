@@ -7,7 +7,6 @@
 
         // Get the latest release
         const versions = await get_json_from_api(`${base_url}/api/versions.json`);
-        
         console.log(`patch ${versions[0]} - ${language}`);
 
         // Get the champions list
@@ -37,7 +36,7 @@
             const a_to_open_modal = document.createElement('a');
             a_to_open_modal.append(champion_image);
             a_to_open_modal.classList.add(`click_to_open_${champ}_modal`);
-            a_to_open_modal.addEventListener('click', () => { open_modal(champions_data['data'][champ], versions[0], language, items_data) });
+            a_to_open_modal.addEventListener('click', () => { open_modal(champions_data['data'][champ], versions, language, items_data) });
             a_to_open_modal.innerHTML += `<figcaption>${champions_data['data'][champ]['name']}</figcaption>`;
             
             // Create the 'figure' element and define its properties.

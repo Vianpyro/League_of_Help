@@ -68,15 +68,17 @@ async function open_modal(champion, versions, language, items) {
 
     // Display the items.
     for (item of unique_items) {
-        if (item in items['data'] && !("into" in items['data'][item]) && items['data'][item]['gold']['base'] > 50) {
-            if (items['data'][item]['from'] in items['data']) {
-                if (!(this_champion_data['name'] == 'Cassiopeia' && items['data'][items['data'][item]['from']]['name'] == 'Boots')) {
+        try {
+            if (items['data'][item]['from'] && (!(items['data'][item]['into']) || new RegExp(['Mythic', 'Legendary'].join("|")).test(items['data'][item]['description']))) {
+                if (items['data'][item]['from'] in items['data']) {
+                    if (!(this_champion_data['name'] == 'Cassiopeia' && items['data'][items['data'][item]['from']]['name'] == 'Boots')) {
+                        document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+                    }
+                } else {
                     document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
-                }
-            } else {
-                document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+                };
             };
-        };
+        } catch (error) {}
     };
 
     // Log the tips (this code must be optimized: the issues should be loaded only once)

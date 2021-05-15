@@ -1,10 +1,9 @@
 ---
 name: Tip submission
 about: Create a tab for a champion whose tips tab does not yet exist
-title: 'Tips: CHAMPION_NAME'
+title: 'Tip: CHAMPION_NAME'
 labels: tip
 assignees: Vianpyro
-project: https://github.com/Vianpyro/league_of_help/projects/1
 
 ---
 

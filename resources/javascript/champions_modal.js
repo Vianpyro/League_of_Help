@@ -36,13 +36,13 @@ async function open_modal(champion, versions, language, items) {
     };
 
     // Implement an array with all the items recommended for the champion.
-    document.getElementById('champion_items').innerHTML = ''
-    let recommended_items = []
+    document.getElementById('champion_items').innerHTML = '';
+    let recommended_items = [];
     if (this_champion_data['recommended'].length == 0) {
         let patch_index = 1
         while (this_champion_data['recommended'].length == 0 && patch_index < versions.length) {
-            new_data = await get_json_from_api(`${base_url}/cdn/${versions[patch_index]}/data/${language}/champion/${champion['id']}.json`);
-            this_champion_data['recommended'] = new_data['data'][champion['id']]['recommended']
+            const new_data = await get_json_from_api(`${base_url}/cdn/${versions[patch_index]}/data/${language}/champion/${champion['id']}.json`);
+            this_champion_data['recommended'] = new_data['data'][champion['id']]['recommended'];
             patch_index++;
         }
         document.getElementById('recommended_items').innerHTML = `Recommended items (patch ${versions[patch_index - 1]}):`
@@ -69,30 +69,36 @@ async function open_modal(champion, versions, language, items) {
     // Display the items.
     for (item of unique_items) {
         if (item in items['data'] && !("into" in items['data'][item]) && items['data'][item]['gold']['base'] > 50) {
-            document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+            if (items['data'][item]['from'] in items['data']) {
+                if (!(this_champion_data['name'] == 'Cassiopeia' && items['data'][items['data'][item]['from']]['name'] == 'Boots')) {
+                    document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+                }
+            } else {
+                document.getElementById('champion_items').innerHTML += `<li class="recommended_item"><img src="${base_url}/cdn/${versions[0]}/img/item/${item}.png" title="${items['data'][item]['name']}"></li>`;
+            };
         };
     };
 
     // Log the tips (this code must be optimized: the issues should be loaded only once)
     const issues = await get_json_from_api('https://api.github.com/repos/Vianpyro/league_of_help/issues');
-    const tips = {}
+    const tips = {};
 
     for (element of issues) {
         for (label of element.labels) {
             if (label.name == 'tip') {
                 tips[element.title.substr(5)] = element.body;
-            }
-        }
-    }
+            };
+        };
+    };
 
     if (this_champion_data['name'] in tips) {
-        document.getElementById('champion_tips').innerHTML = tips[this_champion_data['name']]
+        document.getElementById('champion_tips').innerHTML = tips[this_champion_data['name']];
     } else {
-        document.getElementById('champion_tips').innerHTML = ''
-    }
+        document.getElementById('champion_tips').innerHTML = '';
+    };
 
     // Change the tips link
-    document.getElementById('submit_tips').href = `https://github.com/Vianpyro/league_of_help/issues/new?assignees=Vianpyro&labels=tip&template=tip_submission.md&title=Tip%3A+${this_champion_data['name']}`
+    document.getElementById('submit_tips').href = `https://github.com/Vianpyro/league_of_help/issues/new?assignees=Vianpyro&labels=tip&template=tip_submission.md&title=Tip%3A+${this_champion_data['name']}`;
 
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';
@@ -114,4 +120,4 @@ async function open_modal(champion, versions, language, items) {
             return document.getElementById('modal_champion').style.display = 'none';
         };
     });
-}
+};

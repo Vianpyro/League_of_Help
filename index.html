@@ -33,7 +33,7 @@
     <div id="tags"></div>
     <div id="wrapper"></div>
     <aside id="modal_champion" style="display: none;">
-        <div id="modal_champion_wrapper">
+        <div id="modal_champion_wrapper" style="overflow: auto;">
             <div id="champion_loading_screen">
                 <img loading="lazy" id="champion_loading_screen_image">
                 <figcaption id="champion_loading_screen_infos">
@@ -94,9 +94,9 @@
                 <span id="recommended_items">Recommended items:</span>
                 <ul id="champion_items"></ul>
             </div>
-            <br/>
-            <div>
+            <div style="overflow: auto;">
                 <span>Tips and tricks:</span>
+                <br/>
                 <span id="champion_tips"></span>
                 <br/>
                 <span><i><a href="https://github.com/Vianpyro/league_of_help/issues">Click here</a> to submit your own tips.</i></span>

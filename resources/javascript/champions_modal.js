@@ -81,8 +81,7 @@ async function open_modal(champion, versions, language, items) {
         } catch (error) {}
     };
 
-    // Log the tips (this code must be optimized: the issues should be loaded only once)
-    const issues = await get_json_from_api('https://api.github.com/repos/Vianpyro/league_of_help/issues');
+    // Log the tips
     const tips = {};
 
     for (element of issues) {

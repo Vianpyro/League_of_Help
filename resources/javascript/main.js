@@ -16,7 +16,6 @@ const spell_keys = ['q', 'w', 'e', 'r'];
         if (issues[element].labels.length > 0) {
             for (let label of issues[element].labels) {
                 if (label.name == 'tip') {
-                    console.log(issues[element]);
                     tips[issues[element].title.substr(5)] = [issues[element].body, issues[element].html_url];
                 }
             }

@@ -12,14 +12,16 @@ const spell_keys = ['q', 'w', 'e', 'r'];
     const issues = await get_json_from_api('https://api.github.com/repos/Vianpyro/league_of_help/issues');
     const tips = {};
 
-    for (element in issues) {
-        for (label of issues[element].labels) {
-            if (label.name == 'tip') {
-                console.log(issues[element])
-                tips[issues[element].title.substr(5)] = [issues[element].body, issues[element].html_url];
+    for (let element in issues) {
+        if (issues[element].labels.length > 0) {
+            for (let label of issues[element].labels) {
+                if (label.name == 'tip') {
+                    console.log(issues[element]);
+                    tips[issues[element].title.substr(5)] = [issues[element].body, issues[element].html_url];
+                }
             }
         }
     }
 
-    window.tips = tips
+    window.tips = tips;
 })();

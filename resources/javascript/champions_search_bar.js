@@ -17,6 +17,6 @@ function search_champion() {
         }
         else {
             figure[i].style.display = "none";
-        };
-    };
-};
+        }
+    }
+}

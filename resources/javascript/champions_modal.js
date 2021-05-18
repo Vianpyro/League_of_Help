@@ -81,25 +81,13 @@ async function open_modal(champion, versions, language, items) {
         } catch (error) {}
     };
 
-    // Log the tips
-    const tips = {};
-
-    for (element of issues) {
-        for (label of element.labels) {
-            if (label.name == 'tip') {
-                tips[element.title.substr(5)] = element.body;
-            };
-        };
-    };
-
     if (this_champion_data['name'] in tips) {
-        document.getElementById('champion_tips').innerHTML = tips[this_champion_data['name']];
+        document.getElementById('champion_tips').innerHTML = tips[this_champion_data['name']][0];
+        document.getElementById('submit_tips').href = tips[this_champion_data['name']][1];
     } else {
         document.getElementById('champion_tips').innerHTML = '';
+        document.getElementById('submit_tips').href = `https://github.com/Vianpyro/league_of_help/issues/new?assignees=Vianpyro&labels=tip&template=tip_submission.md&title=Tip%3A+${this_champion_data['name']}`;
     };
-
-    // Change the tips link
-    document.getElementById('submit_tips').href = `https://github.com/Vianpyro/league_of_help/issues/new?assignees=Vianpyro&labels=tip&template=tip_submission.md&title=Tip%3A+${this_champion_data['name']}`;
 
     // Display the modal
     document.getElementById('modal_champion').style.display = 'flex';

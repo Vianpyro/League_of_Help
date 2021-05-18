@@ -32,7 +32,11 @@ async function open_modal(champion, versions, language, items) {
             <p>${this_champion_data.spells[i].description}</p>`;
 
         // Spell cooldowns
-        document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data.spells[i].cooldown}`;
+        if (allEqual(this_champion_data.spells[i].cooldown)) {
+            document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldown: ${this_champion_data.spells[i].cooldown[0]}`;
+        } else {
+            document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data.spells[i].cooldown}`;
+        }
     }
 
     // Display the tips and tricks.

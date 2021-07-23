@@ -32,11 +32,9 @@ async function open_modal(champion, versions, language, items) {
             <p>${this_champion_data.spells[i].description}</p>`;
 
         // Spell cooldowns
-        if (allEqual(this_champion_data.spells[i].cooldown)) {
-            document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldown: ${this_champion_data.spells[i].cooldown[0]}`;
-        } else {
-            document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = `Cooldowns: ${this_champion_data.spells[i].cooldown}`;
-        }
+        document.getElementById(`${spell_keys[i]}_spell_cooldowns`).innerHTML = 'Cooldown' + (
+            allEqual(this_champion_data.spells[i].cooldown) ? `: ${this_champion_data.spells[i].cooldown[0]}` : `s: ${this_champion_data.spells[i].cooldown}`
+            ) + ' second' + (this_champion_data.spells[i].cooldown[this_champion_data.spells[i].cooldown.length - 1] < 2 ? '.' : 's.');
     }
 
     // Display the tips and tricks.

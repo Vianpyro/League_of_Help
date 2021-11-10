@@ -1,12 +1,56 @@
-async function open_modal(champion, versions, language, items) {
+async function open_modal(champion, versions, language, items, meta) {
     const champion_data = await get_json_from_api(`${base_url}/cdn/${versions[0]}/data/${language}/champion/${champion.id}.json`);
     const this_champion_data = champion_data.data[champion.id];
+    const this_champion_meta_points = Math.round((meta[champion.id].popularity - meta[champion.id].mained_by + meta[champion.id].ban_rate - meta[champion.id].win_rate_by_experience / 2) * (meta[champion.id].win_rate / 3));
+
+    if (this_champion_meta_points >= 750) {
+        this_champion_meta_tier = 'Legendary';
+    } else if (this_champion_meta_points >= 650) {
+        this_champion_meta_tier = 'Epic';
+    } else if (this_champion_meta_points >= 550) {
+        this_champion_meta_tier = 'Great';
+    } else if (this_champion_meta_points >= 0) {
+        this_champion_meta_tier = 'Average';
+    } else if (this_champion_meta_points >= -35) {
+        this_champion_meta_tier = 'Poor';
+    } else if (this_champion_meta_points >= -35) {
+        this_champion_meta_tier = 'Terrible';
+    } else if (this_champion_meta_points >= -70) {
+        this_champion_meta_tier = 'Awful';
+    }
 
     // Splash art
     document.getElementById('champion_loading_screen_image').src = `${base_url}/cdn/img/champion/loading/${champion.id}_0.jpg`;
 
-    // Name and title
+    // Name, meta tier and title
     document.getElementById('champion_loading_screen_name').innerHTML = champion.name;
+    document.getElementById('champion_meta_tier').innerHTML = this_champion_meta_tier;
+
+    switch (this_champion_meta_tier) {
+        case 'Legendary':
+            document.getElementById('champion_meta_tier').style.color = '#FFD700';
+            break;
+        case 'Epic':
+            document.getElementById('champion_meta_tier').style.color = '#00BFFF';
+            break;
+        case 'Great':
+            document.getElementById('champion_meta_tier').style.color = '#00FF00';
+            break;
+        case 'Average':
+            document.getElementById('champion_meta_tier').style.color = '#00AAAA';
+            break;
+        case 'Poor':
+            document.getElementById('champion_meta_tier').style.color = '#FFA500';
+            break;
+        case 'Terrible':
+            document.getElementById('champion_meta_tier').style.color = '#FF0000';
+            break;
+        case 'Awful':
+            document.getElementById('champion_meta_tier').style.color = '#AA0000';
+            break;
+    }
+
+    document.getElementById('champion_meta_tier').title = `Meta tier for the patch ${meta['patch']}`;
     document.getElementById('champion_loading_screen_title').innerHTML = champion.title;
 
     // Tag(s)
@@ -58,7 +102,7 @@ async function open_modal(champion, versions, language, items) {
         let patch_index = 1;
         let patch_exists = true;
 
-        while (this_champion_data.recommended.length == 0 && patch_index < versions.length && patch_exists) {
+        while (this_champion_data.recommended.length == 0 && patch_index < versions.length && patch_exists && document.getElementById('modal_champion').style.display == 'flex') {
             try {
                 const new_data = await get_json_from_api(`${base_url}/cdn/${versions[patch_index]}/data/${language}/champion/${champion.id}.json`);
                 this_champion_data.recommended = new_data.data[champion.id].recommended;

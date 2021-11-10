@@ -16,6 +16,9 @@
         // Get the items list
         const items_data = await get_json_from_api(`${base_url}/cdn/${versions[0]}/data/${language}/item.json`);
 
+        // Calculate the meta tier
+        const meta = await get_json_from_api('https://raw.githubusercontent.com/Vianpyro/league_of_legends_buffs_and_nerf_estimator/main/save.json');
+
         // Write the "top text"
         document.getElementById('toptext_champions').innerHTML = champions_list.length;
         document.getElementById('toptext_champions').title = `patch ${versions[0]}`;
@@ -36,7 +39,7 @@
             const a_to_open_modal = document.createElement('a');
             a_to_open_modal.append(champion_image);
             a_to_open_modal.classList.add(`click_to_open_${champ}_modal`);
-            a_to_open_modal.addEventListener('click', () => { open_modal(champions_data.data[champ], versions, language, items_data) });
+            a_to_open_modal.addEventListener('click', () => { open_modal(champions_data.data[champ], versions, language, items_data, meta) });
             a_to_open_modal.innerHTML += `<figcaption>${champions_data.data[champ].name}</figcaption>`;
 
             // Create the 'figure' element and define its properties.

@@ -84,6 +84,9 @@ physicalDamage {
 	color: var(--default_dark_text_color);
 	text-transform: uppercase;
 }
+#champion_meta_tier {
+	font-weight: bold;
+}
 #champion_passive_title, .champion_spell_title {
 	color: goldenrod;
 	font-weight: bold;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="icon" href="favicon.ico" type="image" sizes="609x609">
     <link rel="stylesheet" href="resources/css/league_of_help/champions.css">
@@ -12,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League of Help</title>
 </head>
+
 <body>
     <aside id="scripts">
         <script src="resources/javascript/champions_display_tag.js"></script>
@@ -25,8 +27,8 @@
         With <span id="toptext_champions">more than 150</span> champions,
         you’ll find the perfect match for your playstyle. Master one, or master them all.
         <div>
-            <input type="text" id="search_champion" onkeyup="search_champion()"
-                placeholder="Search for champion..." autocomplete="off" autofocus>
+            <input type="text" id="search_champion" onkeyup="search_champion()" placeholder="Search for champion..."
+                autocomplete="off" autofocus>
         </div>
         <div class="error" id="fetch_error"></div>
     </div>
@@ -48,7 +50,8 @@
             <div id="champion_spells">
                 <span id="passive" class="champion_spell tooltip">
                     <img id="champion_passive_image">
-                    <figcaption id="passive_info"><span id="passive_description" class="tooltip_text"></span></figcaption>
+                    <figcaption id="passive_info"><span id="passive_description" class="tooltip_text"></span>
+                    </figcaption>
                 </span>
                 <span id="q_spell" class="champion_spell tooltip">
                     <img id="champion_q_spell_image">
@@ -97,14 +100,16 @@
             </div>
             <div style="overflow: auto; margin-left: 30%;">
                 <span>Tips and tricks:</span>
-                <br/>
+                <br />
                 <span id="champion_tips"></span>
-                <br/>
-                <span><i><a id="submit_tips" href="https://github.com/Vianpyro/league_of_help/issues">Click here</a> to submit your own tips.</i></span>
+                <br />
+                <span><i><a id="submit_tips" href="https://github.com/Vianpyro/league_of_help/issues">Click here</a> to
+                        submit your own tips.</i></span>
             </div>
             <button id="modal_close">×</button>
         </div>
     </aside>
     <footer></footer>
 </body>
+
 </html>

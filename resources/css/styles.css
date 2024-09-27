@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 :root {
 	--box-shadows: #666 0 0 3px;
 	--default-border-radius: 20px;
@@ -12,18 +13,26 @@
 	--default-light-background-color: #dfdfdf;
 	--default-light-text-color: #ddd;
 }
+
 body {
 	background-color: var(--default-dark-background-color);
 }
-img, input {
+
+img,
+input {
 	user-select: none;
 }
-input:focus, textarea:focus, select:focus {
+
+input:focus,
+textarea:focus,
+select:focus {
 	outline: none;
 }
+
 li {
 	display: inline-flex;
 }
+
 .error {
 	color: #f55;
 	text-decoration: none;

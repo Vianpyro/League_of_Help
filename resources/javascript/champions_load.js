@@ -73,7 +73,7 @@
         // Create the 'img' element and define its properties.
         const tag_image = document.createElement('img');
         tag_image.loading = 'lazy';
-        tag_image.src = `resources/images/tags/${this_tag.toLowerCase()}.png`;
+        tag_image.src = `resources/images/tags/${this_tag.toLowerCase()}.svg`;
         tag_image.style.backgroundColor = '#ccc';
 
         // Create the 'a' element and define its properties.

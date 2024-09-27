@@ -81,7 +81,7 @@ physicalDamage {
 	text-align: center;
 }
 #champion_loading_screen_name {
-	color: var(--default_dark_text_color);
+	color: var(--default-dark-text-color);
 	text-transform: uppercase;
 }
 #champion_meta_tier {
@@ -112,8 +112,8 @@ physicalDamage {
 }
 #modal_champion_wrapper {
 	align-items: center;
-	background-color: var(--default_light_background_color);
-	border-radius: var(--default_border_radius);
+	background-color: var(--default-light-background-color);
+	border-radius: var(--default-border-radius);
 	flex-direction: row;
 	flex-wrap: wrap;
 	height: 85%;
@@ -124,8 +124,8 @@ physicalDamage {
 	width: 85%;
 }
 #modal_close {
-	background-color: var(--default_light_background_color);
-	background-color: var(--default_light_text_color);
+	background-color: var(--default-light-background-color);
+	background-color: var(--default-light-text-color);
 	border: none;
 	border-radius: 50%;
 	color: red;
@@ -144,7 +144,7 @@ physicalDamage {
 }
 #modal_close:hover {
 	background-color: red;
-	color: var(--default_light_text_color);
+	color: var(--default-light-text-color);
 	cursor: pointer;
 	transform: scale(1.20);
 }

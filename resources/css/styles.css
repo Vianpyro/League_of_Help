@@ -4,16 +4,16 @@
 	padding: 0;
 }
 :root {
-	--box_shadows: #666 0 0 3px;
-	--default_border_radius: 20px;
-	--default_dark_background_color: #333;
-	--default_dark_text_color: #222;
-	--default_hypertext_hover_color: #aaa;
-	--default_light_background_color: #dfdfdf;
-	--default_light_text_color: #ddd;
+	--box-shadows: #666 0 0 3px;
+	--default-border-radius: 20px;
+	--default-dark-background-color: #333;
+	--default-dark-text-color: #222;
+	--default-hypertext-hover-color: #aaa;
+	--default-light-background-color: #dfdfdf;
+	--default-light-text-color: #ddd;
 }
 body {
-	background-color: var(--default_dark_background_color);
+	background-color: var(--default-dark-background-color);
 }
 img, input {
 	user-select: none;

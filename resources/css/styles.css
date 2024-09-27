@@ -1,39 +1,62 @@
-* {
-	font-family: sans-serif;
-	margin: 0;
-	padding: 0;
+:root {
+    --background-color-primary: #f0f0f0;
+    --text-color-primary: #333;
+
+    @media screen and (prefers-color-scheme: dark) {
+        --background-color-primary: #0f0f0f;
+        --text-color-primary: #ccc;
+    }
 }
 
-:root {
-	--box-shadows: #666 0 0 3px;
-	--default-border-radius: 20px;
-	--default-dark-background-color: #333;
-	--default-dark-text-color: #222;
-	--default-hypertext-hover-color: #aaa;
-	--default-light-background-color: #dfdfdf;
-	--default-light-text-color: #ddd;
+* {
+    color: var(--text-color-primary);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	background-color: var(--default-dark-background-color);
+    align-items: center;
+    background-color: var(--background-color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header {
+    margin: 2em;
+}
+
+header h1 {
+    font-size: large;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
 }
 
 img,
 input {
-	user-select: none;
+    user-select: none;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-	outline: none;
-}
-
-li {
-	display: inline-flex;
+    outline: none;
 }
 
 .error {
-	color: #f55;
-	text-decoration: none;
+    color: #f55;
+    text-decoration: none;
+}
+
+#scripts {
+    display: none;
 }

@@ -3,113 +3,34 @@
 
 <head>
     <link rel="icon" href="favicon.ico" type="image" sizes="609x609">
-    <link rel="stylesheet" href="resources/css/league_of_help/champions.css">
-    <link rel="stylesheet" href="resources/css/league_of_help/modal.css">
-    <link rel="stylesheet" href="resources/css/league_of_help/search_bar.css">
     <link rel="stylesheet" href="resources/css/styles.css">
-    <script src="resources/javascript/main.js"></script>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>League of Help</title>
 </head>
 
 <body>
+    <noscript>
+        <h1 class="error">You need to enable JavaScript to run this app.</h1>
+    </noscript>
+
+    <header>
+        <h1>With <span id="champions-count">over 150</span> champions, you'll find the perfect match for your playstyle.
+            Master one, or master them all.</h1>
+    </header>
+
+    <main>
+        <h1>Main</h1>
+    </main>
+
+    <footer>
+        <a href="https://github.com/Vianpyro/League_of_Help/blob/main/LICENSE"> Copyright &copy; 2021-2024</a>
+        <a href="https://github.com/Vianpyro">Vianney Veremme</a>
+    </footer>
+
     <aside id="scripts">
-        <script src="resources/javascript/champions_display_tag.js"></script>
-        <script src="resources/javascript/champions_load.js"></script>
-        <script src="resources/javascript/champions_modal.js"></script>
-        <script src="resources/javascript/champions_search_bar.js"></script>
+        <script src="resources/javascript/main.js"></script>
     </aside>
-    <header></header>
-    <div id="toptext">
-        <noscript class="error">You need to enable JavaScript to run this app.</noscript>
-        With <span id="toptext_champions">more than 150</span> champions,
-        you’ll find the perfect match for your playstyle. Master one, or master them all.
-        <div>
-            <input type="text" id="search_champion" onkeyup="search_champion()" placeholder="Search for champion..."
-                autocomplete="off" autofocus>
-        </div>
-        <div class="error" id="fetch_error"></div>
-    </div>
-    <div id="tags"></div>
-    <div id="wrapper"></div>
-    <aside id="modal_champion" style="display: none;">
-        <div id="modal_champion_wrapper" style="overflow: auto;">
-            <div id="champion_loading_screen">
-                <img loading="lazy" id="champion_loading_screen_image">
-                <figcaption id="champion_loading_screen_infos">
-                    <span id="champion_loading_screen_name" title="Champion name"></span>
-                    <span id="champion_meta_tier" title="Meta tier"></span>
-                    <span id="champion_loading_screen_title"></span>
-                    <span id="champion_tags"></span>
-                    <span id="riot_difficulty"><progress id="champion_riot_difficulty" max="10"></progress></span>
-                </figcaption>
-            </div>
-            <span>Abilities:</span>
-            <div id="champion_spells">
-                <span id="passive" class="champion_spell tooltip">
-                    <img id="champion_passive_image">
-                    <figcaption id="passive_info"><span id="passive_description" class="tooltip_text"></span>
-                    </figcaption>
-                </span>
-                <span id="q_spell" class="champion_spell tooltip">
-                    <img id="champion_q_spell_image">
-                    <figcaption id="q_spell_info">
-                        <span class="spell_key">Q</span>
-                        <div class="tooltip_text">
-                            <span id="q_spell_description"></span>
-                            <span id="q_spell_cooldowns" class="champion_spell_cooldown"></span>
-                        </div>
-                    </figcaption>
-                </span>
-                <span id="w_spell" class="champion_spell tooltip">
-                    <img id="champion_w_spell_image">
-                    <figcaption id="w_spell_info">
-                        <span class="spell_key">W</span>
-                        <div class="tooltip_text">
-                            <span id="w_spell_description"></span>
-                            <span id="w_spell_cooldowns" class="champion_spell_cooldown"></span>
-                        </div>
-                    </figcaption>
-                </span>
-                <span id="e_spell" class="champion_spell tooltip">
-                    <img id="champion_e_spell_image">
-                    <figcaption id="e_spell_info">
-                        <span class="spell_key">E</span>
-                        <div class="tooltip_text">
-                            <span id="e_spell_description"></span>
-                            <span id="e_spell_cooldowns" class="champion_spell_cooldown"></span>
-                        </div>
-                    </figcaption>
-                </span>
-                <span id="r_spell" class="champion_spell tooltip">
-                    <img id="champion_r_spell_image">
-                    <figcaption id="r_spell_info">
-                        <span class="spell_key">R</span>
-                        <div class="tooltip_text">
-                            <span id="r_spell_description"></span>
-                            <span id="r_spell_cooldowns" class="champion_spell_cooldown"></span>
-                        </div>
-                    </figcaption>
-                </span>
-            </div>
-            <div>
-                <span id="recommended_items">Recommended items:</span>
-                <ul id="champion_items"></ul>
-            </div>
-            <div style="overflow: auto; margin-left: 30%;">
-                <span>Tips and tricks:</span>
-                <br />
-                <span id="champion_tips"></span>
-                <br />
-                <span><i><a id="submit_tips" href="https://github.com/Vianpyro/league_of_help/issues">Click here</a> to
-                        submit your own tips.</i></span>
-            </div>
-            <button id="modal_close">×</button>
-        </div>
-    </aside>
-    <footer></footer>
 </body>
 
 </html>

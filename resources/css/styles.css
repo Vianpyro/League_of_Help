@@ -33,7 +33,7 @@ body {
 
 header,
 footer {
-    margin: 2em;
+    margin: 3rem;
 }
 
 header h1 {
@@ -42,9 +42,11 @@ header h1 {
 }
 
 main {
+    align-items: center;
     display: flex;
+    flex-direction: column;
+    gap: 3rem;
     height: fit-content;
-    justify-content: center;
     width: 100%;
 }
 

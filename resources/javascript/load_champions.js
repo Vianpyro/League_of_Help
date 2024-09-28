@@ -20,26 +20,26 @@ const loadingChampionsMessage = document.getElementById("loading-champions");
         const championElement = document.createElement("div");
         championElement.classList.add("champion");
 
-        // Create img element
-        const imgElement = document.createElement('img');
-        imgElement.src = `${dataDragonUrl}/cdn/${version}/img/champion/${champion.image.full}`;
-        imgElement.alt = champion.name;
+        // Create element for champion's portrait
+        const championPortrait = document.createElement("img");
+        championPortrait.src = `${dataDragonUrl}/cdn/${version}/img/champion/${champion.image.full}`;
+        championPortrait.alt = champion.name;
 
-        // Create h3 element
-        const h3Element = document.createElement('h3');
-        h3Element.textContent = champion.name;
+        // Create element for champion's name
+        const championName = document.createElement("h3");
+        championName.textContent = champion.name;
 
-        // Create p element
-        const pElement = document.createElement('p');
-        pElement.textContent = champion.title;
+        // Create element for champion's title
+        const championTitle = document.createElement("p");
+        championTitle.textContent = champion.title;
 
         // Clear the existing content
-        championElement.innerHTML = '';
+        championElement.innerHTML = "";
 
         // Append the new elements
-        championElement.appendChild(imgElement);
-        championElement.appendChild(h3Element);
-        championElement.appendChild(pElement);
+        championElement.appendChild(championPortrait);
+        championElement.appendChild(championName);
+        championElement.appendChild(championTitle);
         championsContainer.appendChild(championElement);
     });
 

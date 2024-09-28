@@ -3,7 +3,7 @@ const modal = document.getElementById('modal');
 const closeButton = document.getElementById('close-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalImage = document.getElementById('modal-image');
-const championAbilities = document.getElementById('abilities');
+const championAbilities = document.getElementById('modal-abilities');
 
 closeButton.addEventListener('click', () => {
     closeModal();
@@ -29,6 +29,25 @@ function enableScroll() {
     document.body.style.overflow = 'auto';
 }
 
+function fillAbilities(championId, abilities) {
+    abilities.forEach((ability, index) => {
+        const abilityElement = document.createElement('li');
+        abilityElement.innerText = ability.id.startsWith(championId) ? ability.id.slice(championId.length) : defaultSpellKeys[index];
+        championAbilities.appendChild(abilityElement);
+    });
+}
+
+function fillNameAndTitle(name, title) {
+    const championName = document.createElement('span');
+    championName.textContent = name;
+    modalTitle.appendChild(championName);
+
+    const championTitle = document.createElement('span');
+    championTitle.textContent = title;
+
+    modalTitle.appendChild(championTitle);
+}
+
 async function fillModal(patch, championId) {
     // Load the champion from the API using their ID
     const champion = await fetch(`http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion/${championId}.json`)
@@ -38,22 +57,13 @@ async function fillModal(patch, championId) {
             return championData;
         });
 
-    // Display the champion's name and image
-    modalTitle.textContent = champion.name;
+    // Display the champion's information in the modal
+    fillNameAndTitle(champion.name, champion.title);
     modalImage.src = `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championId}_0.jpg`;
     modalImage.alt = champion.name;
-
     fillAbilities(championId, champion.spells);
 }
 
-function fillAbilities(championId, abilities) {
-    abilities.forEach((ability, index) => {
-        const abilityElement = document.createElement('li');
-        abilityElement.classList.add('ability');
-        abilityElement.innerText = ability.id.startsWith(championId) ? ability.id.slice(championId.length) : defaultSpellKeys[index];
-        championAbilities.appendChild(abilityElement);
-    });
-}
 
 function openModal(patch, champion) {
     disableScroll();

@@ -4,6 +4,7 @@
 <head>
     <link rel="icon" href="favicon.ico" type="image" sizes="609x609">
     <link rel="stylesheet" href="resources/css/champions.css">
+    <link rel="stylesheet" href="resources/css/modal.css">
     <link rel="stylesheet" href="resources/css/styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +29,22 @@
         </section>
     </main>
 
+    <aside id="modal-container">
+        <div id="modal">
+            <button id="close-modal">&Cross;</button>
+            <h1 id="modal-title">Champion Name</h1>
+            <img id="modal-image" src="" alt="Champion Image">
+            <p id="modal-lore">Champion Lore</p>
+            <h2>Abilities</h2>
+            <div id="modal-abilities">
+                <div class="ability">
+                    <h3 id="ability-title">Ability Name</h3>
+                    <p id="ability-description">Ability Description</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <footer>
         <a href="https://github.com/Vianpyro/League_of_Help/blob/main/LICENSE"> Copyright &copy; 2021-2024</a>
         <a href="https://github.com/Vianpyro">Vianney Veremme</a>
@@ -36,6 +53,7 @@
     <aside id="scripts">
         <script src="resources/javascript/main.js"></script>
         <script src="resources/javascript/load_champions.js" defer></script>
+        <script src="resources/javascript/modal.js" defer></script>
         <script src="resources/javascript/search_champions.js" defer></script>
     </aside>
 </body>

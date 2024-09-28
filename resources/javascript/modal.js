@@ -6,14 +6,27 @@ const modalImage = document.getElementById('modal-image');
 const modalDescription = document.getElementById('modal-description');
 
 closeButton.addEventListener('click', () => {
-    modalContainer.style.display = 'none';
+    closeModal();
 });
 
 window.addEventListener('click', function (e) {
     if (!modal.contains(e.target) && modalContainer.contains(e.target)) {
-        closeButton.click();
+        closeModal();
     }
 });
+
+function closeModal() {
+    enableScroll();
+    modalContainer.style.display = 'none';
+}
+
+function disableScroll() {
+    document.body.style.overflow = 'hidden';
+}
+
+function enableScroll() {
+    document.body.style.overflow = 'auto';
+}
 
 function fillModal(championId) {
     // Load the champion from the API using their ID
@@ -29,6 +42,7 @@ function fillModal(championId) {
 }
 
 function openModal(champion) {
+    disableScroll();
     fillModal(champion);
     modalContainer.style.display = 'flex';
 }

@@ -1,9 +1,11 @@
 :root {
     --background-color-primary: #f0f0f0;
+    --background-color-secondary: #a0a0a0;
     --text-color-primary: #333;
 
     @media screen and (prefers-color-scheme: dark) {
         --background-color-primary: #0f0f0f;
+        --background-color-secondary: #5f5f5f;
         --text-color-primary: #ccc;
     }
 }
@@ -25,7 +27,8 @@ body {
     width: 100%;
 }
 
-header {
+header,
+footer {
     margin: 2em;
 }
 
@@ -36,7 +39,7 @@ header h1 {
 
 main {
     display: flex;
-    height: 100%;
+    height: fit-content;
     justify-content: center;
     width: 100%;
 }

@@ -1,0 +1,29 @@
+.champion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 175px;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--background-color-secondary);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#champions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    width: 80%;
+}
+
+@media screen and (max-width: 768px) {
+    .champion {
+        width: 100px;
+    }
+
+    #champions {
+        width: 100%;
+    }
+}

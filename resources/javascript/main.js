@@ -11,10 +11,12 @@ async function getGameLanguages() {
     return response.json();
 }
 
-(async () => {
-    const languages = await getGameLanguages();
-    const navigatorLanguage = navigator.language || navigator.userLanguage;
-    const language = languages.includes(navigatorLanguage) ? navigatorLanguage : "en_US";
+async function getChampionData(version, language) {
+    const response = await fetch(`${dataDragonUrl}/cdn/${version}/data/${language}/champion.json`);
+    return response.json();
+};
 
-    console.log(language);
-})();
+async function getItemsData(version, language) {
+    const response = await fetch(`${dataDragonUrl}/cdn/${version}/data/${language}/item.json`);
+    return response.json();
+};

@@ -11,16 +11,6 @@
     width: 2.5rem;
 }
 
-#modal-container {
-    align-items: center;
-    background-color: rgba(0 0 0 / 75%);
-    display: none;
-    height: 100%;
-    justify-content: center;
-    position: fixed;
-    width: 100%;
-}
-
 #modal {
     background-color: var(--background-color-secondary);
     border-radius: var(--boarder-radius);
@@ -34,16 +24,26 @@
     width: 50%;
 }
 
+#modal-container {
+    align-items: center;
+    background-color: rgba(0 0 0 / 75%);
+    display: none;
+    height: 100%;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+}
+
+#modal-image {
+    width: 100%;
+}
+
 #modal-left {
     flex: 1;
 }
 
 #modal-right {
     flex: 3;
-}
-
-#modal-image {
-    width: 100%;
 }
 
 #modal-title {

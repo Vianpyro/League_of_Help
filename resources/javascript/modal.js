@@ -29,10 +29,23 @@ function enableScroll() {
     document.body.style.overflow = 'auto';
 }
 
-function fillAbilities(championId, abilities) {
+function createAbilityElement(imageSrc, captionText) {
+    const element = document.createElement('li');
+    const image = document.createElement('img');
+    image.src = imageSrc;
+    const caption = document.createElement('figcaption');
+    caption.innerText = captionText;
+    element.appendChild(image);
+    element.appendChild(caption);
+    return element;
+}
+
+function fillAbilities(patch, passive, abilities) {
+    const passiveElement = createAbilityElement(`${dataDragonUrl}/cdn/${patch}/img/passive/${passive.image.full}`, passive.name);
+    championAbilities.appendChild(passiveElement);
+
     abilities.forEach((ability, index) => {
-        const abilityElement = document.createElement('li');
-        abilityElement.innerText = ability.id.startsWith(championId) ? ability.id.slice(championId.length) : defaultSpellKeys[index];
+        const abilityElement = createAbilityElement(`${dataDragonUrl}/cdn/${patch}/img/spell/${ability.image.full}`, defaultSpellKeys[index]);
         championAbilities.appendChild(abilityElement);
     });
 }
@@ -50,18 +63,20 @@ function fillNameAndTitle(name, title) {
 
 async function fillModal(patch, championId) {
     // Load the champion from the API using their ID
-    const champion = await fetch(`http://ddragon.leagueoflegends.com/cdn/${patch}/data/en_US/champion/${championId}.json`)
+    const champion = await fetch(`${dataDragonUrl}/cdn/${patch}/data/en_US/champion/${championId}.json`)
         .then(response => response.json())
         .then(data => {
             const championData = Object.values(data.data)[0];
             return championData;
         });
 
+    console.log(champion);
+
     // Display the champion's information in the modal
     fillNameAndTitle(champion.name, champion.title);
-    modalImage.src = `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championId}_0.jpg`;
+    modalImage.src = `${dataDragonUrl}/cdn/img/champion/loading/${championId}_0.jpg`;
     modalImage.alt = champion.name;
-    fillAbilities(championId, champion.spells);
+    fillAbilities(patch, champion.passive, champion.spells);
 }
 
 

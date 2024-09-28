@@ -24,6 +24,17 @@
     width: 50%;
 }
 
+#modal-abilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-around;
+}
+
+#modal-abilities li {
+    list-style-type: none;
+}
+
 #modal-container {
     align-items: center;
     background-color: rgba(0 0 0 / 75%);

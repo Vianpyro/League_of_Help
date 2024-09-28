@@ -1,7 +1,7 @@
 #modal-container {
     align-items: center;
     background-color: rgba(0 0 0 / 75%);
-    display: flex;
+    display: none;
     height: 100%;
     justify-content: center;
     position: fixed;
@@ -10,9 +10,10 @@
 
 #modal {
     background-color: var(--background-color-secondary);
-    border-radius: 15px;
+    border-radius: var(--boarder-radius);
     box-shadow: var(--highlight-color) 0 0 10px;
     height: 50%;
+    overflow-y: auto;
     padding: 1em;
     position: relative;
     width: 50%;

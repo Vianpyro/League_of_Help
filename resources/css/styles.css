@@ -1,6 +1,7 @@
 :root {
     --background-color-primary: #e0e0e0;
     --background-color-secondary: #fff;
+    --boarder-radius: 15px;
     --highlight-color: #7f7f7f;
     --text-color-primary: #333;
     --text-color-secondary: #777;

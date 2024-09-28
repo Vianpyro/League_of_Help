@@ -15,8 +15,17 @@ window.addEventListener('click', function (e) {
     }
 });
 
-function fillModal(champion) {
-    modalTitle.innerText = champion;
+function fillModal(championId) {
+    // Load the champion from the API using their ID
+    const champion = fetch(`http://ddragon.leagueoflegends.com/cdn/11.10.1/data/en_US/champion/${championId}.json`)
+        .then(response => response.json())
+        .then(data => {
+            const championData = Object.values(data.data)[0];
+            modalTitle.textContent = championData.name;
+            modalImage.src = `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championId}_0.jpg`;
+            modalImage.alt = championData.name;
+            modalDescription.textContent = championData.blurb;
+        });
 }
 
 function openModal(champion) {

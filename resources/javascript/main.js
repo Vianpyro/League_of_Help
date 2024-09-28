@@ -1,5 +1,5 @@
 const dataDragonUrl = "https://ddragon.leagueoflegends.com";
-const spellKeys = ["q", "w", "e", "r"];
+const defaultSpellKeys = ["Q", "W", "E", "R"];
 
 async function getGameVersions() {
     const response = await fetch(`${dataDragonUrl}/api/versions.json`);

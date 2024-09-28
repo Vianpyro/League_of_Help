@@ -18,7 +18,7 @@ const loadingChampionsMessage = document.getElementById("loading-champions");
     // Create elements for each champion and append them to the champions container
     champions.forEach(champion => {
         const championElement = document.createElement("div");
-        championElement.addEventListener("click", () => openModal(champion.id));
+        championElement.addEventListener("click", () => openModal(version, champion.id));
         championElement.classList.add("champion");
 
         // Create element for champion's portrait

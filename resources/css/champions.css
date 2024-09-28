@@ -23,7 +23,7 @@
 #champions {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 2.5rem;
     justify-content: center;
     width: 75%;
 }
@@ -62,5 +62,10 @@
 
     #champions {
         width: 100%;
+        gap: 1rem;
+    }
+
+    #search-bar {
+        font-size: large;
     }
 }

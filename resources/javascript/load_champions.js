@@ -25,6 +25,7 @@ const loadingChampionsMessage = document.getElementById("loading-champions");
         const championPortrait = document.createElement("img");
         championPortrait.src = `${dataDragonUrl}/cdn/${version}/img/champion/${champion.image.full}`;
         championPortrait.alt = champion.name;
+        championPortrait.loading = 'lazy';
 
         // Create element for champion's name
         const championName = document.createElement("h3");

@@ -5,6 +5,7 @@ const modalTitle = document.getElementById('modal-title');
 const modalImageBig = document.getElementById('modal-image-big');
 const modalImageSmall = document.getElementById('modal-image-small');
 const championAbilities = document.getElementById('modal-abilities');
+const difficultyMeter = document.getElementById('modal-difficulty-meter');
 
 closeButton.addEventListener('click', () => {
     closeModal();
@@ -51,6 +52,17 @@ function fillAbilities(patch, passive, abilities) {
     });
 }
 
+function fillDifficulty(difficulty) {
+    if (difficulty == 0) {
+        difficultyMeter.removeAttribute('value');
+        difficultyMeter.title = 'Difficulty to master unknown';
+        return;
+    }
+
+    difficultyMeter.value = difficulty;
+    difficultyMeter.title = `Difficulty to master: ${difficulty}/10`;
+}
+
 function fillNameAndTitle(name, title) {
     const championName = document.createElement('span');
     championName.textContent = name;
@@ -80,8 +92,8 @@ async function fillModal(patch, championId) {
     modalImageBig.alt = champion.name;
     modalImageSmall.alt = champion.name;
     fillAbilities(patch, champion.passive, champion.spells);
+    fillDifficulty(champion.info.difficulty);
 }
-
 
 function openModal(patch, champion) {
     disableScroll();

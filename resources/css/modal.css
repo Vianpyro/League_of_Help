@@ -1,3 +1,7 @@
+.modal-image {
+    width: 100%;
+}
+
 #close-modal {
     background: none;
     border: none;
@@ -45,8 +49,12 @@
     width: 100%;
 }
 
-#modal-image {
-    width: 100%;
+#modal-image-big {
+    display: block;
+}
+
+#modal-image-small {
+    display: none;
 }
 
 #modal-left {
@@ -89,5 +97,13 @@
 
     #modal-image {
         display: none;
+    }
+
+    #modal-image-big {
+        display: none;
+    }
+
+    #modal-image-small {
+        display: block;
     }
 }

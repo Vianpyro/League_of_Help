@@ -2,7 +2,8 @@ const modalContainer = document.getElementById('modal-container');
 const modal = document.getElementById('modal');
 const closeButton = document.getElementById('close-modal');
 const modalTitle = document.getElementById('modal-title');
-const modalImage = document.getElementById('modal-image');
+const modalImageBig = document.getElementById('modal-image-big');
+const modalImageSmall = document.getElementById('modal-image-small');
 const championAbilities = document.getElementById('modal-abilities');
 
 closeButton.addEventListener('click', () => {
@@ -74,8 +75,10 @@ async function fillModal(patch, championId) {
 
     // Display the champion's information in the modal
     fillNameAndTitle(champion.name, champion.title);
-    modalImage.src = `${dataDragonUrl}/cdn/img/champion/loading/${championId}_0.jpg`;
-    modalImage.alt = champion.name;
+    modalImageBig.src = `${dataDragonUrl}/cdn/img/champion/loading/${championId}_0.jpg`;
+    modalImageSmall.src = `${dataDragonUrl}/cdn/${patch}/img/champion/${champion.image.full}`;
+    modalImageBig.alt = champion.name;
+    modalImageSmall.alt = champion.name;
     fillAbilities(patch, champion.passive, champion.spells);
 }
 
@@ -88,7 +91,7 @@ function openModal(patch, champion) {
 
 function resetModal() {
     modalTitle.textContent = '';
-    modalImage.src = '';
-    modalImage.alt = '';
+    modalImageBig.src = '';
+    modalImageSmall.alt = '';
     championAbilities.innerHTML = '';
 }

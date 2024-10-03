@@ -6,6 +6,7 @@ const modalImageBig = document.getElementById('modal-image-big');
 const modalImageSmall = document.getElementById('modal-image-small');
 const championAbilities = document.getElementById('modal-abilities');
 const difficultyMeter = document.getElementById('modal-difficulty-meter');
+const championRoles = document.getElementById('modal-roles');
 
 closeButton.addEventListener('click', () => {
     closeModal();
@@ -55,6 +56,11 @@ function createAbilityElements(ability) {
     return { abilityElement, abilityCaption };
 }
 
+function createPassiveElement(ability) {
+    const { abilityElement } = createAbilityElements(ability);
+    return abilityElement;
+}
+
 function createSpellElement(ability, index) {
     const { abilityElement, abilityCaption } = createAbilityElements(ability);
     const abilityKey = document.createElement('span');
@@ -64,11 +70,6 @@ function createSpellElement(ability, index) {
         abilityCaption.appendChild(abilityKey);
     }
 
-    return abilityElement;
-}
-
-function createPassiveElement(ability) {
-    const { abilityElement } = createAbilityElements(ability);
     return abilityElement;
 }
 
@@ -114,6 +115,10 @@ function fillNameAndTitle(name, title) {
     modalTitle.appendChild(championTitle);
 }
 
+function fillRoles(roles) {
+    championRoles.textContent = (roles.length === 1) ? `Role: ${roles[0]}` : `Roles: ${roles.join(', ')}`;
+}
+
 async function fillModal(patch, championId) {
     // Load the champion from the API using their ID
     const champion = await fetch(`${dataDragonUrl}/cdn/${patch}/data/en_US/champion/${championId}.json`)
@@ -133,6 +138,7 @@ async function fillModal(patch, championId) {
     modalImageSmall.alt = champion.name;
     fillAbilities(patch, champion.passive, champion.spells);
     fillDifficulty(champion.info.difficulty);
+    fillRoles(champion.tags);
 }
 
 function openModal(patch, champion) {

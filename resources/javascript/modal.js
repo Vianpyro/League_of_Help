@@ -42,7 +42,7 @@ function createAbilityElements(ability) {
 
     abilityImage.src = ability.imageSrc;
     abilityDescriptionTitle.textContent = ability.name;
-    abilityDescriptionTooltip.innerHTML = ability.tooltip;
+    abilityDescriptionTooltip.innerHTML = ability.description;
     abilityDescriptionCooldown.textContent = `Cooldown: ${ability.cooldown}`;
 
     abilityCaption.appendChild(abilityDescription);
@@ -76,7 +76,7 @@ function fillAbilities(patch, passive, abilities) {
     const passiveElement = createPassiveElement({
         imageSrc: `${dataDragonUrl}/cdn/${patch}/img/passive/${passive.image.full}`,
         name: passive.name,
-        tooltip: passive.tooltip,
+        description: passive.description,
         cooldown: 'N/A'
     });
     championAbilities.appendChild(passiveElement);
@@ -85,8 +85,8 @@ function fillAbilities(patch, passive, abilities) {
         const abilityElement = createSpellElement({
             imageSrc: `${dataDragonUrl}/cdn/${patch}/img/spell/${ability.image.full}`,
             name: ability.name,
-            tooltip: ability.tooltip,
-            cooldown: ability.cooldownBurn
+            description: ability.description,
+            cooldown: `${ability.cooldownBurn} second(s)`
         }, index);
         championAbilities.appendChild(abilityElement);
     });
@@ -122,6 +122,8 @@ async function fillModal(patch, championId) {
             const championData = Object.values(data.data)[0];
             return championData;
         });
+
+    console.log(champion);
 
     // Display the champion's information in the modal
     fillNameAndTitle(champion.name, champion.title);

@@ -31,23 +31,63 @@ function enableScroll() {
     document.body.style.overflow = 'auto';
 }
 
-function createAbilityElement(imageSrc, captionText) {
-    const element = document.createElement('li');
-    const image = document.createElement('img');
-    image.src = imageSrc;
-    const caption = document.createElement('figcaption');
-    caption.innerText = captionText;
-    element.appendChild(image);
-    element.appendChild(caption);
-    return element;
+function createAbilityElements(ability) {
+    const abilityElement = document.createElement('li');
+    const abilityImage = document.createElement('img');
+    const abilityCaption = document.createElement('figcaption');
+    const abilityDescription = document.createElement('div');
+    const abilityDescriptionTitle = document.createElement('h3');
+    const abilityDescriptionTooltip = document.createElement('p');
+    const abilityDescriptionCooldown = document.createElement('p');
+
+    abilityImage.src = ability.imageSrc;
+    abilityDescriptionTitle.textContent = ability.name;
+    abilityDescriptionTooltip.innerHTML = ability.tooltip;
+    abilityDescriptionCooldown.textContent = `Cooldown: ${ability.cooldown}`;
+
+    abilityCaption.appendChild(abilityDescription);
+    abilityDescription.appendChild(abilityDescriptionTitle);
+    abilityDescription.appendChild(abilityDescriptionTooltip);
+    abilityDescription.appendChild(abilityDescriptionCooldown);
+    abilityElement.appendChild(abilityImage);
+    abilityElement.appendChild(abilityCaption);
+
+    return { abilityElement, abilityCaption };
+}
+
+function createSpellElement(ability, index) {
+    const { abilityElement, abilityCaption } = createAbilityElements(ability);
+    const abilityKey = document.createElement('span');
+
+    if (index !== undefined) {
+        abilityKey.textContent = defaultSpellKeys[index];
+        abilityCaption.appendChild(abilityKey);
+    }
+
+    return abilityElement;
+}
+
+function createPassiveElement(ability) {
+    const { abilityElement } = createAbilityElements(ability);
+    return abilityElement;
 }
 
 function fillAbilities(patch, passive, abilities) {
-    const passiveElement = createAbilityElement(`${dataDragonUrl}/cdn/${patch}/img/passive/${passive.image.full}`, passive.name);
+    const passiveElement = createPassiveElement({
+        imageSrc: `${dataDragonUrl}/cdn/${patch}/img/passive/${passive.image.full}`,
+        name: passive.name,
+        tooltip: passive.tooltip,
+        cooldown: 'N/A'
+    });
     championAbilities.appendChild(passiveElement);
 
     abilities.forEach((ability, index) => {
-        const abilityElement = createAbilityElement(`${dataDragonUrl}/cdn/${patch}/img/spell/${ability.image.full}`, defaultSpellKeys[index]);
+        const abilityElement = createSpellElement({
+            imageSrc: `${dataDragonUrl}/cdn/${patch}/img/spell/${ability.image.full}`,
+            name: ability.name,
+            tooltip: ability.tooltip,
+            cooldown: ability.cooldownBurn
+        }, index);
         championAbilities.appendChild(abilityElement);
     });
 }
@@ -82,8 +122,6 @@ async function fillModal(patch, championId) {
             const championData = Object.values(data.data)[0];
             return championData;
         });
-
-    console.log(champion);
 
     // Display the champion's information in the modal
     fillNameAndTitle(champion.name, champion.title);

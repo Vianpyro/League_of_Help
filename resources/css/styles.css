@@ -1,30 +1,75 @@
-* {
-	font-family: sans-serif;
-	margin: 0;
-	padding: 0;
-}
 :root {
-	--box_shadows: #666 0 0 3px;
-	--default_border_radius: 20px;
-	--default_dark_background_color: #333;
-	--default_dark_text_color: #222;
-	--default_hypertext_hover_color: #aaa;
-	--default_light_background_color: #dfdfdf;
-	--default_light_text_color: #ddd;
+    --background-color-primary: #e0e0e0;
+    --background-color-secondary: #fff;
+    --background-highlight: rgba(0 0 0 / 75%);
+    --boarder-radius: 15px;
+    --highlight-color: #7f7f7f;
+    --text-color-primary: #333;
+    --text-color-secondary: #777;
+
+    @media screen and (prefers-color-scheme: dark) {
+        --background-color-primary: #0f0f0f;
+        --background-color-secondary: #4f4f4f;
+        --text-color-primary: #ccc;
+        --text-color-secondary: #999;
+    }
 }
+
+* {
+    color: var(--text-color-primary);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    transition-duration: 1s;
+}
+
 body {
-	background-color: var(--default_dark_background_color);
+    align-items: center;
+    background-color: var(--background-color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    justify-content: space-between;
+    width: 100%;
 }
-img, input {
-	user-select: none;
+
+header,
+footer {
+    margin: 3rem;
 }
-input:focus, textarea:focus, select:focus {
-	outline: none;
+
+header h1 {
+    font-size: x-large;
+    text-align: center;
 }
-li {
-	display: inline-flex;
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    height: fit-content;
+    width: 100%;
 }
+
+img,
+input {
+    user-select: none;
+}
+
 .error {
-	color: #f55;
-	text-decoration: none;
+    color: #f55;
+    text-decoration: none;
+}
+
+#scripts {
+    display: none;
+}
+
+/* Pseudo classes & elements */
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
 }
